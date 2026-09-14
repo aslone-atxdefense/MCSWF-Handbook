@@ -1,13 +1,11 @@
 name: Deploy site to GitHub Pages
 
 on:
+  # Any push to main rebuilds. An earlier path filter here missed sitegen/,
+  # so edits to the build modules silently published nothing; the build takes
+  # seconds, so filtering is not worth that failure mode.
   push:
     branches: [main]
-    paths:
-      - 'mcswf-site.html'
-      - 'seal.png'
-      - 'build-site.py'
-      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 # Allow the workflow to publish to Pages via OIDC.
