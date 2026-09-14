@@ -21,6 +21,7 @@ SLOT_FILES = {
     "SIDEBAR": SRC / "layout" / "sidebar.html",
     "HERO": SRC / "layout" / "hero.html",
     "FOOTER": SRC / "layout" / "footer.html",
+    "TOTOP": SRC / "layout" / "totop.html",
 }
 
 # Copied verbatim into dist/ alongside the rendered page.

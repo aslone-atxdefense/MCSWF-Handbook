@@ -52,18 +52,18 @@ const CONTRACTOR = {
 const DRESS = {
   formal:{
     lede:"The most formal civilian clothing type — essentially business attire, used for official or formal occasions such as meetings with high-ranking officials of the U.S. and host nation.",
-    m:["Slacks","Button-up shirt with collar","Blazer or suit coat","Dress shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","All-weather jacket or overcoat optional","<strong>Hats will not be worn</strong>"],
+    m:["Slacks","Button-up shirt with collar","Blazer or suit coat","Dress shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","All-weather jacket or overcoat optional","Hats will not be worn"],
     f:["Dress","Slacks or conservative skirt","Button-up blouse or equivalent","Blazer or suit coat","Conservative dress shoes complementary to the attire","Belt, stockings or socks as necessary","Fleece or non-military all-weather jacket optional","Conservative jewelry complementary to the attire","A handbag that complements the attire, where suitable"]
   },
   business:{
     lede:"Less formal, yet still a professional appearance. This is the MCSWF default for day-to-day work unless you are directed otherwise.",
-    m:["Slacks","Jeans, <strong>with no holes or tears</strong>","Button-up shirt with collar","Shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","Fleece or non-military all-weather jacket optional","<strong>Hats will not be worn</strong>"],
+    m:["Slacks","Jeans, with no holes or tears","Button-up shirt with collar","Shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","Fleece or non-military all-weather jacket optional","Hats will not be worn"],
     f:["Slacks, conservative skirt, or dress","Button-up blouse or equivalent","Conservative dress shoes complementary to the attire","Belt, stockings or socks as necessary","Fleece or non-military all-weather jacket optional","Jewelry that is conservative and within <span class='ref'>MCO 1020.34H</span>","A handbag that complements the attire, where suitable"]
   },
   roughs:{
     lede:"The least formal type, for missions requiring hardier clothing to withstand a physically rugged environment and activity.",
-    m:["Cargo pants or tasteful jeans","Collared shirt — polo or equivalent","Fleece or non-military all-weather jacket optional","Hiking boots or equivalent","Belt and socks complementary to the attire","<strong>Hats may be worn case-by-case</strong>"],
-    f:["Same as males, except the shirt may be substituted for a tasteful blouse","<strong>No spaghetti straps, tank tops, or untasteful exposure of skin</strong>"]
+    m:["Cargo pants or tasteful jeans","Collared shirt — polo or equivalent","Fleece or non-military all-weather jacket optional","Hiking boots or equivalent","Belt and socks complementary to the attire","Hats may be worn case-by-case"],
+    f:["Same as males, except the shirt may be substituted for a tasteful blouse","No spaghetti straps, tank tops, or untasteful exposure of skin"]
   }
 };
 
@@ -328,6 +328,42 @@ stepsEl.addEventListener('click', e => {
   body.hidden = !open;
   btn.setAttribute('aria-expanded', String(open));
 });
+
+/* ============ RETURN TO TOP ============ */
+(function toTop(){
+  const btn = document.getElementById('toTop');
+  if (!btn) return;
+
+  /* Two-stage hide: .away fades it out, [hidden] then takes it out of the tab
+     order once the transition has finished. */
+  let hideTimer;
+  function show(on){
+    clearTimeout(hideTimer);
+    if (on) { btn.hidden = false; requestAnimationFrame(() => btn.classList.remove('away')); }
+    else    { btn.classList.add('away'); hideTimer = setTimeout(() => { btn.hidden = true; }, 220); }
+  }
+  btn.classList.add('away');
+
+  /* Appears after roughly one screen of scrolling. */
+  let ticking = false;
+  function check(){
+    ticking = false;
+    show(window.scrollY > window.innerHeight * 0.9);
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(check); }
+  }, {passive:true});
+  check();
+
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  btn.addEventListener('click', () => {
+    window.scrollTo({top:0, behavior: still.matches ? 'auto' : 'smooth'});
+    /* Send focus back to the search field so keyboard users land where the
+       page starts rather than at the bottom of the document. */
+    const first = document.getElementById('search');
+    if (first) first.focus({preventScroll:true});
+  });
+})();
 
 /* ============ MARPAT PIXEL FIELD ============ */
 (function camo(){

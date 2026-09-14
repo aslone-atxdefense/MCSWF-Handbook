@@ -7,3 +7,6 @@ dist/
 
 # macOS
 .DS_Store
+
+# Node (package.json only provides the npm run dev/build shortcuts)
+node_modules/

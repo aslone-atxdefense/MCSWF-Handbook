@@ -19,6 +19,7 @@ change there is erased on the next build.
 | The left sidebar | `layout/sidebar.html` |
 | The bar across the top on phones | `layout/topbar.html` |
 | The bottom of the page | `layout/footer.html` |
+| The floating "Top" button | `layout/totop.html` |
 | The order things appear on the page | `layout/frame.html` |
 
 **95% of edits are in `sections/`.** Start there.
@@ -37,7 +38,8 @@ src/
 │   ├── topbar.html    ← mobile top bar
 │   ├── sidebar.html   ← left navigation panel
 │   ├── hero.html      ← big title block
-│   └── footer.html    ← bottom of page
+│   ├── footer.html    ← bottom of page
+│   └── totop.html     ← floating "return to top" button
 └── sections/          ← THE HANDBOOK CONTENT — one file per section
     ├── 01-dayone.html
     ├── 02-mission.html
@@ -129,17 +131,35 @@ whole site consistently.
 
 ---
 
-## Build and preview
+## Live preview while you edit
 
 ```bash
-python3 build-site.py
+python3 dev-server.py      # or: npm run dev
 ```
 
-Then open `dist/index.html` in a browser. No installation, no dependencies —
-just Python 3.
+This opens <http://127.0.0.1:5173/> in your browser and then watches this
+folder. **Save a file and the page updates by itself** — no rebuilding, no
+refreshing:
 
-In VS Code, right-click `dist/index.html` → **Open with Live Server** (if you
-have that extension) for auto-refresh, or just double-click the file.
+| You change... | What happens |
+| --- | --- |
+| `styles.css` | The new styling appears instantly; the page does not reload, so you keep your place |
+| A section, a layout file, `scripts.js` | The page reloads and returns to the same scroll position |
+| Something that breaks the build | A dark panel explains what went wrong; fix it and the panel disappears |
+
+A small green note in the bottom-left corner confirms each update. Press
+`ctrl-c` in the terminal to stop the server.
+
+It needs nothing installed — just Python 3. To use a different port:
+`python3 dev-server.py --port 8080`.
+
+## Building without the preview
+
+```bash
+python3 build-site.py      # or: npm run build
+```
+
+Writes `dist/`, which you can open directly in a browser.
 
 When it looks right, commit and push — GitHub Actions rebuilds and publishes it
 automatically.
@@ -159,6 +179,7 @@ build replaces each one with the contents of another file:
 | `{{HERO}}` | `layout/hero.html` |
 | `{{SECTIONS}}` | every file in `sections/`, in number order |
 | `{{FOOTER}}` | `layout/footer.html` |
+| `{{TOTOP}}` | `layout/totop.html` |
 | `{{SCRIPTS}}` | `scripts.js` |
 
 Each slot must stay **alone on its own line**. You rarely need to touch this

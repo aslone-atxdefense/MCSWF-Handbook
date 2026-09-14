@@ -82,6 +82,9 @@ Only what the published site needs:
 | `seal.png` | Site icon and image asset |
 | `build-site.py` | Build entry point |
 | `sitegen/` | Build modules |
+| `dev-server.py` | Live-preview entry point (`npm run dev`) |
+| `devserver/` | Dev-server modules — watch, rebuild, push to the browser |
+| `package.json` | `npm run dev` / `npm run build` shortcuts; no dependencies |
 | `.github/workflows/pages.yml` | Deploys to GitHub Pages on push to `main` |
 
 The site was originally one 1,284-line `mcswf-site.html`; it is now assembled
@@ -96,7 +99,11 @@ from `src/`. Adding a section means adding the file **and** an entry in the
 
 ```bash
 python3 build-site.py     # rebuild dist/ (stdlib only, no dependencies)
+python3 dev-server.py     # live preview at :5173, rebuilds and pushes on save
 ```
+
+Both are also reachable as `npm run build` and `npm run dev`; package.json only
+shells out to these, so nothing needs installing either way.
 
 Deployment is automatic: pushing to `main` triggers
 [.github/workflows/pages.yml](.github/workflows/pages.yml), which runs the

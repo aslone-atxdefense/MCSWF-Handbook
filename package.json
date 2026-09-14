@@ -1,0 +1,11 @@
+{
+  "name": "mcswf-handbook",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Member Standards Handbook site for the U.S. Marine Corps Software Factory.",
+  "scripts": {
+    "dev": "python3 dev-server.py",
+    "build": "python3 build-site.py",
+    "preview": "python3 dev-server.py --no-open"
+  }
+}
