@@ -369,19 +369,42 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 @media (max-width:920px){
   .shell{grid-template-columns:1fr}
   .rail{display:none}
+  /* --topbar-h is the drawer's offset. Defined on :root because .drawer is a
+     SIBLING of .topbar - a variable set on .topbar would not reach it. JS
+     re-measures it on load and resize, so a wrapped title cannot leave the
+     drawer overlapping the bar. */
+  :root{--topbar-h:52px}
   .topbar{
     display:flex;position:sticky;top:0;z-index:20;align-items:center;gap:12px;
+    min-height:var(--topbar-h);
     background:var(--surface);border-bottom:1px solid var(--rule);
-    padding:9px clamp(20px,4vw,64px);
+    padding:4px clamp(20px,4vw,64px);
   }
   .topbar img{width:27px;height:27px;filter:var(--seal-filter);flex:none}
   .topbar b{font-family:var(--f-display);font-size:13.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;flex:1;line-height:1.15}
-  .topbar button{
-    font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-    background:none;border:1px solid var(--rule);color:var(--ink-2);padding:6px 11px;border-radius:3px;cursor:pointer
+  /* Hamburger: three bars that become an X while the drawer is open.
+     44px square keeps it at the minimum comfortable tap target. */
+  .burger{
+    flex:none;width:44px;height:44px;display:grid;place-items:center;
+    background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent
   }
+  .burger-box{position:relative;display:block;width:22px;height:16px}
+  .burger-box i{
+    position:absolute;left:0;width:100%;height:2px;border-radius:2px;
+    background:var(--ink-2);transition:transform .22s ease,opacity .15s ease,background .22s ease
+  }
+  .burger-box i:nth-child(1){top:0}
+  .burger-box i:nth-child(2){top:7px}
+  .burger-box i:nth-child(3){top:14px}
+  .burger:hover .burger-box i{background:var(--ink)}
+  .burger:focus-visible{outline:2px solid var(--scarlet);outline-offset:2px;border-radius:3px}
+  /* Open state is driven by aria-expanded, so the markup stays the source of truth. */
+  .burger[aria-expanded="true"] .burger-box i{background:var(--scarlet)}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .drawer{
-    display:none;position:sticky;top:46px;z-index:19;background:var(--surface);
+    display:none;position:sticky;top:var(--topbar-h,52px);z-index:19;background:var(--surface);
     border-bottom:1px solid var(--rule);padding:10px clamp(20px,4vw,64px) 16px;
     max-height:64vh;overflow-y:auto
   }
@@ -418,7 +441,10 @@ html{scroll-behavior:smooth}
 <div class="topbar">
   <img src="seal.png" alt="">
   <b>MCSWF Standards Handbook</b>
-  <button id="drawerBtn" aria-expanded="false">Index</button>
+  <button id="drawerBtn" class="burger" type="button"
+          aria-expanded="false" aria-controls="drawer" aria-label="Open section index">
+    <span class="burger-box" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
 </div>
 <div class="drawer" id="drawer"><nav class="rail-nav" id="navM"></nav></div>
 
@@ -626,7 +652,7 @@ html{scroll-behavior:smooth}
           <div>
             <h4>Do</h4>
             <ul class="list">
-              <li>When direct guidance is not available, use good situational awareness. <strong>Dress for the situation.</strong></li>
+              <li>When direct guidance is not available, use good situational awareness. Dress for the situation.</li>
               <li>When TAD, pack extras — laundry service may not be available.</li>
               <li>Remember you are a professional, in civilian attire or uniform.</li>
               <li>Consider cultural norms when choosing attire.</li>
@@ -1023,18 +1049,18 @@ const CONTRACTOR = {
 const DRESS = {
   formal:{
     lede:"The most formal civilian clothing type — essentially business attire, used for official or formal occasions such as meetings with high-ranking officials of the U.S. and host nation.",
-    m:["Slacks","Button-up shirt with collar","Blazer or suit coat","Dress shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","All-weather jacket or overcoat optional","<strong>Hats will not be worn</strong>"],
+    m:["Slacks","Button-up shirt with collar","Blazer or suit coat","Dress shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","All-weather jacket or overcoat optional"],
     f:["Dress","Slacks or conservative skirt","Button-up blouse or equivalent","Blazer or suit coat","Conservative dress shoes complementary to the attire","Belt, stockings or socks as necessary","Fleece or non-military all-weather jacket optional","Conservative jewelry complementary to the attire","A handbag that complements the attire, where suitable"]
   },
   business:{
     lede:"Less formal, yet still a professional appearance. This is the MCSWF default for day-to-day work unless you are directed otherwise.",
-    m:["Slacks","Jeans, <strong>with no holes or tears</strong>","Button-up shirt with collar","Shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","Fleece or non-military all-weather jacket optional","<strong>Hats will not be worn</strong>"],
+    m:["Slacks","Jeans, with no holes or tears","Button-up shirt with collar","Shoes complementary to the attire","Belt and socks complementary to the attire","Ties may be worn if required","Fleece or non-military all-weather jacket optional"],
     f:["Slacks, conservative skirt, or dress","Button-up blouse or equivalent","Conservative dress shoes complementary to the attire","Belt, stockings or socks as necessary","Fleece or non-military all-weather jacket optional","Jewelry that is conservative and within <span class='ref'>MCO 1020.34H</span>","A handbag that complements the attire, where suitable"]
   },
   roughs:{
     lede:"The least formal type, for missions requiring hardier clothing to withstand a physically rugged environment and activity.",
-    m:["Cargo pants or tasteful jeans","Collared shirt — polo or equivalent","Fleece or non-military all-weather jacket optional","Hiking boots or equivalent","Belt and socks complementary to the attire","<strong>Hats may be worn case-by-case</strong>"],
-    f:["Same as males, except the shirt may be substituted for a tasteful blouse","<strong>No spaghetti straps, tank tops, or untasteful exposure of skin</strong>"]
+    m:["Cargo pants or tasteful jeans","Collared shirt — polo or equivalent","Fleece or non-military all-weather jacket optional","Hiking boots or equivalent","Belt and socks complementary to the attire"],
+    f:["Same as males, except the shirt may be substituted for a tasteful blouse","No spaghetti straps, tank tops, or untasteful exposure of skin"]
   }
 };
 
@@ -1117,14 +1143,43 @@ const spy = new IntersectionObserver(entries => {
 }, {rootMargin: '-15% 0px -70% 0px'});
 SECTIONS.forEach(s => { const el = document.getElementById(s.id); if (el) spy.observe(el); });
 
-const drawer = document.getElementById('drawer'), dBtn = document.getElementById('drawerBtn');
-dBtn.addEventListener('click', () => {
-  const open = drawer.classList.toggle('open');
+/* ---- Mobile hamburger drawer ---- */
+const drawer = document.getElementById('drawer'),
+      dBtn   = document.getElementById('drawerBtn'),
+      topbar = document.querySelector('.topbar');
+
+/* aria-expanded drives the bars-to-X animation in CSS, so it is set on every
+   state change rather than only for screen readers. */
+function setDrawer(open){
+  drawer.classList.toggle('open', open);
   dBtn.setAttribute('aria-expanded', String(open));
+  dBtn.setAttribute('aria-label', open ? 'Close section index' : 'Open section index');
+}
+
+dBtn.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+
+/* Tapping a section closes the drawer; the href jumps to it. */
+navM.addEventListener('click', e => { if (e.target.closest('a')) setDrawer(false); });
+
+/* Escape closes it and returns focus to the button. */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && drawer.classList.contains('open')) { setDrawer(false); dBtn.focus(); }
 });
-navM.addEventListener('click', e => {
-  if (e.target.closest('a')) { drawer.classList.remove('open'); dBtn.setAttribute('aria-expanded','false'); }
+
+/* Tapping outside the drawer closes it. */
+document.addEventListener('click', e => {
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !dBtn.contains(e.target))
+    setDrawer(false);
 });
+
+/* Keep the drawer pinned directly under the bar even if the title wraps. */
+function measureTopbar(){
+  if (topbar && topbar.offsetHeight)
+    document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+}
+measureTopbar();
+window.addEventListener('resize', measureTopbar);
+window.addEventListener('load', measureTopbar);
 
 /* ============ CHECKLIST ============ */
 const KEY = 'mcswf.checkin.v1';

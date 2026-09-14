@@ -353,19 +353,42 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 @media (max-width:920px){
   .shell{grid-template-columns:1fr}
   .rail{display:none}
+  /* --topbar-h is the drawer's offset. Defined on :root because .drawer is a
+     SIBLING of .topbar - a variable set on .topbar would not reach it. JS
+     re-measures it on load and resize, so a wrapped title cannot leave the
+     drawer overlapping the bar. */
+  :root{--topbar-h:52px}
   .topbar{
     display:flex;position:sticky;top:0;z-index:20;align-items:center;gap:12px;
+    min-height:var(--topbar-h);
     background:var(--surface);border-bottom:1px solid var(--rule);
-    padding:9px clamp(20px,4vw,64px);
+    padding:4px clamp(20px,4vw,64px);
   }
   .topbar img{width:27px;height:27px;filter:var(--seal-filter);flex:none}
   .topbar b{font-family:var(--f-display);font-size:13.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;flex:1;line-height:1.15}
-  .topbar button{
-    font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-    background:none;border:1px solid var(--rule);color:var(--ink-2);padding:6px 11px;border-radius:3px;cursor:pointer
+  /* Hamburger: three bars that become an X while the drawer is open.
+     44px square keeps it at the minimum comfortable tap target. */
+  .burger{
+    flex:none;width:44px;height:44px;display:grid;place-items:center;
+    background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent
   }
+  .burger-box{position:relative;display:block;width:22px;height:16px}
+  .burger-box i{
+    position:absolute;left:0;width:100%;height:2px;border-radius:2px;
+    background:var(--ink-2);transition:transform .22s ease,opacity .15s ease,background .22s ease
+  }
+  .burger-box i:nth-child(1){top:0}
+  .burger-box i:nth-child(2){top:7px}
+  .burger-box i:nth-child(3){top:14px}
+  .burger:hover .burger-box i{background:var(--ink)}
+  .burger:focus-visible{outline:2px solid var(--scarlet);outline-offset:2px;border-radius:3px}
+  /* Open state is driven by aria-expanded, so the markup stays the source of truth. */
+  .burger[aria-expanded="true"] .burger-box i{background:var(--scarlet)}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] .burger-box i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .drawer{
-    display:none;position:sticky;top:46px;z-index:19;background:var(--surface);
+    display:none;position:sticky;top:var(--topbar-h,52px);z-index:19;background:var(--surface);
     border-bottom:1px solid var(--rule);padding:10px clamp(20px,4vw,64px) 16px;
     max-height:64vh;overflow-y:auto
   }

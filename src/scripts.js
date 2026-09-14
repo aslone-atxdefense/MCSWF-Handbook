@@ -146,14 +146,43 @@ const spy = new IntersectionObserver(entries => {
 }, {rootMargin: '-15% 0px -70% 0px'});
 SECTIONS.forEach(s => { const el = document.getElementById(s.id); if (el) spy.observe(el); });
 
-const drawer = document.getElementById('drawer'), dBtn = document.getElementById('drawerBtn');
-dBtn.addEventListener('click', () => {
-  const open = drawer.classList.toggle('open');
+/* ---- Mobile hamburger drawer ---- */
+const drawer = document.getElementById('drawer'),
+      dBtn   = document.getElementById('drawerBtn'),
+      topbar = document.querySelector('.topbar');
+
+/* aria-expanded drives the bars-to-X animation in CSS, so it is set on every
+   state change rather than only for screen readers. */
+function setDrawer(open){
+  drawer.classList.toggle('open', open);
   dBtn.setAttribute('aria-expanded', String(open));
+  dBtn.setAttribute('aria-label', open ? 'Close section index' : 'Open section index');
+}
+
+dBtn.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+
+/* Tapping a section closes the drawer; the href jumps to it. */
+navM.addEventListener('click', e => { if (e.target.closest('a')) setDrawer(false); });
+
+/* Escape closes it and returns focus to the button. */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && drawer.classList.contains('open')) { setDrawer(false); dBtn.focus(); }
 });
-navM.addEventListener('click', e => {
-  if (e.target.closest('a')) { drawer.classList.remove('open'); dBtn.setAttribute('aria-expanded','false'); }
+
+/* Tapping outside the drawer closes it. */
+document.addEventListener('click', e => {
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !dBtn.contains(e.target))
+    setDrawer(false);
 });
+
+/* Keep the drawer pinned directly under the bar even if the title wraps. */
+function measureTopbar(){
+  if (topbar && topbar.offsetHeight)
+    document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+}
+measureTopbar();
+window.addEventListener('resize', measureTopbar);
+window.addEventListener('load', measureTopbar);
 
 /* ============ CHECKLIST ============ */
 const KEY = 'mcswf.checkin.v1';
