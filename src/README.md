@@ -183,4 +183,4 @@ highlights the matching tag when you click one.
 
 **Nothing you can break here is permanent** — the original single-file version
 is archived outside the repo at
-`../ambers_notes_private/source-documents/mcswf-site.ORIGINAL.html`.
+`../MCSWF-Handbook-private/source-documents/mcswf-site.ORIGINAL.html`.

@@ -1,4 +1,4 @@
-# Working Instructions
+# Working Instructions — MCSWF Handbook
 
 Standing rules for this repository. Read before making changes.
 
@@ -42,7 +42,7 @@ Constants and paths go in `config.py`, never hardcoded in logic.
 
 ## 3. This repository is PUBLIC
 
-`aslone-atxdefense/ambers_notes` is public on GitHub. Anything committed here
+`aslone-atxdefense/MCSWF-Handbook` is public on GitHub. Anything committed here
 is readable by anyone on the internet, permanently — git history keeps files
 even after they are deleted in a later commit.
 
@@ -52,18 +52,18 @@ even after they are deleted in a later commit.
 - Anything with names, contact details, locations, or internal procedures
 - Credentials, tokens, keys, `.env` files
 
-**Those belong in `../ambers_notes_private/`** — a sibling folder outside the
+**Those belong in `../MCSWF-Handbook-private/`** — a sibling folder outside the
 repository, not tracked by git:
 
 ```
 developer/
-├── ambers_notes/          ← public repo; only what the site needs
-└── ambers_notes_private/  ← never committed
-    ├── source-documents/  MCSWF Handbook (.docx and .md)
-    └── notes/             markdown-cheatsheet.md, scratch files
+├── MCSWF-Handbook/          ← public repo; only what the site needs
+└── MCSWF-Handbook-private/  ← never committed
+    ├── source-documents/    MCSWF Handbook (.docx and .md)
+    └── notes/               markdown-cheatsheet.md, scratch files
 ```
 
-If a task needs one of those files, read it from `../ambers_notes_private/`.
+If a task needs one of those files, read it from `../MCSWF-Handbook-private/`.
 Do not copy it into the repo.
 
 ---
@@ -101,7 +101,7 @@ python3 build-site.py     # rebuild dist/ (stdlib only, no dependencies)
 Deployment is automatic: pushing to `main` triggers
 [.github/workflows/pages.yml](.github/workflows/pages.yml), which runs the
 build and publishes `dist/` to
-<https://aslone-atxdefense.github.io/ambers_notes/>.
+<https://aslone-atxdefense.github.io/MCSWF-Handbook/>.
 
 **Amber pushes. Claude does not** — see rule 1.
 
