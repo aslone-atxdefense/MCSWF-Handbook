@@ -26,6 +26,7 @@ The site build is the reference example — see [sitegen/](sitegen/):
 | Module | Responsibility |
 | --- | --- |
 | `config.py` | Paths and settings. No logic. |
+| `page.py` | Assembles the fragment from the pieces in `src/`. |
 | `template.py` | HTML assembly and fragment parsing. |
 | `assets.py` | Copying static files into `dist/`. |
 | `build.py` | Orchestration — calls the others, owns no details. |
@@ -73,11 +74,19 @@ Only what the published site needs:
 
 | File | Purpose |
 | --- | --- |
-| `mcswf-site.html` | Source fragment — **edit this** to change the site |
+| `src/sections/` | One file per handbook section — **most edits go here** |
+| `src/layout/` | Page frame: header, sidebar, hero, footer |
+| `src/styles.css` | All styling |
+| `src/scripts.js` | Nav list, search, interactivity |
+| `src/README.md` | Editing guide written for a non-developer |
 | `seal.png` | Site icon and image asset |
 | `build-site.py` | Build entry point |
 | `sitegen/` | Build modules |
 | `.github/workflows/pages.yml` | Deploys to GitHub Pages on push to `main` |
+
+The site was originally one 1,284-line `mcswf-site.html`; it is now assembled
+from `src/`. Adding a section means adding the file **and** an entry in the
+`SECTIONS` array in `src/scripts.js` — see `src/README.md`.
 
 `dist/` is build output and is gitignored — the Pages workflow rebuilds it.
 

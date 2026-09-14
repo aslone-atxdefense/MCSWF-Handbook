@@ -5,8 +5,23 @@ from pathlib import Path
 # sitegen/ lives at the repo root, so the project root is one level up.
 ROOT = Path(__file__).resolve().parent.parent
 
-SOURCE = ROOT / "mcswf-site.html"
 DIST = ROOT / "dist"
+
+# --- Editable source pieces (see src/README.md) ----------------------------
+SRC = ROOT / "src"
+FRAME = SRC / "layout" / "frame.html"
+SECTIONS_DIR = SRC / "sections"
+
+# Slot token {{NAME}} in frame.html -> the file whose contents replace it.
+# SECTIONS is handled separately: every file in SECTIONS_DIR, in filename order.
+SLOT_FILES = {
+    "STYLES": SRC / "styles.css",
+    "SCRIPTS": SRC / "scripts.js",
+    "TOPBAR": SRC / "layout" / "topbar.html",
+    "SIDEBAR": SRC / "layout" / "sidebar.html",
+    "HERO": SRC / "layout" / "hero.html",
+    "FOOTER": SRC / "layout" / "footer.html",
+}
 
 # Copied verbatim into dist/ alongside the rendered page.
 ASSETS = [ROOT / "seal.png"]

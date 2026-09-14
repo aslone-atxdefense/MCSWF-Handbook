@@ -2,13 +2,14 @@
 
 from . import config
 from .assets import copy_assets, write_robots
+from .page import assemble
 from .template import render_document, split_fragment
 
 
 def build():
     """Build the site into dist/. Returns the list of files written."""
-    source = config.SOURCE.read_text(encoding="utf-8")
-    head, body = split_fragment(source)
+    fragment = assemble()
+    head, body = split_fragment(fragment)
 
     document = render_document(
         head,

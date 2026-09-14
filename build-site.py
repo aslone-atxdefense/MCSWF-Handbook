@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the standalone site into dist/.
 
-Thin entry point; the build itself lives in the sitegen package. Edit
-mcswf-site.html, then re-run this to refresh dist/.
+Thin entry point; the build itself lives in the sitegen package. Edit the
+pieces in src/, then re-run this to refresh dist/.
 """
 
 import sys

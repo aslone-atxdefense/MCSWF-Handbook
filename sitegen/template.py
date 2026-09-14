@@ -1,6 +1,6 @@
 """Turn the Artifact-format fragment into a standalone HTML document.
 
-mcswf-site.html is authored for the Artifact runtime, which supplies the
+The assembled fragment is authored for the Artifact runtime, which supplies the
 <!doctype>/<head>/<body> skeleton and a small CSS reset at publish time.
 Serving the page over plain HTTP means supplying both here instead.
 """
