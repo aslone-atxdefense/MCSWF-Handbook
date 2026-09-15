@@ -1,6 +1,5 @@
 /* ============ DATA ============ */
 const SECTIONS = [
-  {id:"dayone",     n:"—",  t:"First two weeks", k:"checklist badge arrive check-in onboarding start day one"},
   {id:"mission",    n:"01", t:"Mission & Values", k:"vision endstate purpose innovation collaboration excellence integrity"},
   {id:"welcome",    n:"02", t:"Welcome letter",  k:"oblak averette director sea congratulations"},
   {id:"conduct",    n:"03", t:"Code of Conduct", k:"contractor government gs ctr far ucmj cameras punctual professionalism"},
@@ -12,19 +11,6 @@ const SECTIONS = [
   {id:"tad",        n:"09", t:"Temporary duty",  k:"tad dts conops travel sharepoint tracker director approval"},
   {id:"resources",  n:"10", t:"Resources",       k:"books reading cs50 odin boot.dev bah housing childcare schools links tricare capmetro"},
   {id:"directory",  n:"11", t:"Directory",       k:"contacts phone email ortiz oblak averette slone references mco far"}
-];
-
-const CHECKS = [
-  {id:"badge",   t:"Collect your building badge",         d:"Issued on day one. Opens the garage, the B1 gym, and Suite 540.", w:"Day 1"},
-  {id:"marpat",  t:"Stage woodland MARPAT",               d:"MCCUU is required every Monday and the first workday after any liberty period.", w:"Day 1"},
-  {id:"acct",    t:"Learn your accountability chain",     d:"Know who you report to and whether your deadline is 0830 or 0845.", w:"Day 1"},
-  {id:"hours",   t:"Confirm your team's working hours",   d:"By team agreement: 0730–1530 or 0830–1630.", w:"Week 1"},
-  {id:"tricare", t:"Verify TRICARE Remote enrollment",    d:"Yours and your dependents'. Raise any issue to the SEA immediately.", w:"Week 1"},
-  {id:"gym",     t:"Check out the B1 gym",                d:"Lockers, showers and towels provided. Badge access only.", w:"Week 1"},
-  {id:"dts",     t:"Confirm your DTS profile is current", d:"You will need it before your first TAD CONOPS is approved.", w:"Week 1"},
-  {id:"pft",     t:"Know your PFT/CFT window",            d:"Annual PFT and CFT are required. Failure carries promotion restriction.", w:"Week 2"},
-  {id:"swag",   t:"Order MCSWF swag",                     d:"Then tell Amber Slone so she can track the order.", w:"Week 2"},
-  {id:"read",    t:"Start one primary curriculum",        d:"Boot.dev, The Odin Project, MDN, or Full Stack Open — pick one and work it.", w:"Week 2"}
 ];
 
 const CONTRACTOR = {
@@ -183,39 +169,6 @@ function measureTopbar(){
 measureTopbar();
 window.addEventListener('resize', measureTopbar);
 window.addEventListener('load', measureTopbar);
-
-/* ============ CHECKLIST ============ */
-const KEY = 'mcswf.checkin.v1';
-let state = {};
-try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
-function persist(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
-
-const clItems = document.getElementById('clItems');
-clItems.innerHTML = CHECKS.map(c =>
-  '<label class="cl-item" for="ck-'+c.id+'">' +
-    '<input type="checkbox" id="ck-'+c.id+'" data-id="'+c.id+'">' +
-    '<span class="cl-body"><b>'+c.t+'</b><span>'+c.d+'</span></span>' +
-    '<span class="cl-when">'+c.w+'</span>' +
-  '</label>'
-).join('');
-
-const fill = document.getElementById('clFill'), count = document.getElementById('clCount');
-function paint(){
-  let done = 0;
-  clItems.querySelectorAll('input').forEach(i => {
-    const on = !!state[i.dataset.id];
-    i.checked = on;
-    i.closest('.cl-item').classList.toggle('done', on);
-    if (on) done++;
-  });
-  fill.style.width = (done / CHECKS.length * 100) + '%';
-  count.textContent = done + ' / ' + CHECKS.length;
-}
-clItems.addEventListener('change', e => {
-  if (e.target.matches('input')) { state[e.target.dataset.id] = e.target.checked; persist(); paint(); }
-});
-document.getElementById('clReset').addEventListener('click', () => { state = {}; persist(); paint(); });
-paint();
 
 /* ============ CONTRACTOR DO / DON'T ============ */
 const ddBody = document.getElementById('ddBody');

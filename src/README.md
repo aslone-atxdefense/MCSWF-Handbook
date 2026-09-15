@@ -41,7 +41,6 @@ src/
 │   ├── footer.html    ← bottom of page
 │   └── totop.html     ← floating "return to top" button
 └── sections/          ← THE HANDBOOK CONTENT — one file per section
-    ├── 01-dayone.html
     ├── 02-mission.html
     └── ...
 ```
@@ -52,7 +51,6 @@ Files are numbered, and **the number sets the order on the page**.
 
 | File | Section on the page |
 | --- | --- |
-| `01-dayone.html` | Your first two weeks |
 | `02-mission.html` | Mission & Values |
 | `03-welcome.html` | Welcome letter |
 | `04-conduct.html` | Code of Conduct |

@@ -209,43 +209,6 @@ h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing
   padding:2px 6px;border-radius:2px;white-space:nowrap;
 }
 
-/* ============ DAY ONE CHECKLIST ============ */
-.checklist{border:1px solid var(--rule);background:var(--surface)}
-.cl-top{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--rule)}
-.cl-meter{flex:1;min-width:170px;display:flex;align-items:center;gap:12px}
-.cl-track{flex:1;height:5px;background:var(--surface-2);border-radius:99px;overflow:hidden}
-.cl-fill{height:100%;width:0;background:var(--field);border-radius:99px;transition:width .28s ease}
-.cl-count{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.cl-reset{
-  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
-  background:none;border:1px solid var(--rule);color:var(--ink-2);
-  padding:5px 11px;border-radius:3px;cursor:pointer
-}
-.cl-reset:hover{border-color:var(--ink-3);color:var(--ink)}
-.cl-items{display:flex;flex-direction:column}
-.cl-item{display:flex;gap:13px;padding:13px 20px;border-bottom:1px solid var(--rule-soft);cursor:pointer;align-items:flex-start}
-.cl-item:last-child{border-bottom:0}
-.cl-item:hover{background:var(--surface-2)}
-.cl-item input{
-  appearance:none;flex:none;width:17px;height:17px;margin-top:2px;
-  border:1.5px solid var(--ink-3);border-radius:2px;cursor:pointer;background:var(--paper);
-  display:grid;place-content:center
-}
-.cl-item input::before{
-  content:"";width:9px;height:9px;transform:scale(0);transition:transform .12s ease;
-  background:var(--paper);clip-path:polygon(14% 44%,0 60%,38% 100%,100% 22%,84% 6%,36% 66%)
-}
-.cl-item input:checked{background:var(--field);border-color:var(--field)}
-.cl-item input:checked::before{transform:scale(1)}
-.cl-body{min-width:0}
-.cl-body b{display:block;font-size:14.5px;font-weight:600;line-height:1.4}
-.cl-body span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
-.cl-item.done .cl-body b{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
-.cl-when{
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-3);flex:none;margin-top:3px;text-align:right
-}
-
 /* ============ TABS (dress code / tracks) ============ */
 .tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);flex-wrap:wrap}
 .tabs button{
@@ -426,8 +389,6 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 @media (max-width:520px){
   body{font-size:15.5px}
   .glance div{border-right:0}
-  .cl-when{display:none}
-  .cl-item{padding-inline:15px}
   .to-top{min-width:44px;padding:0;justify-content:center}
   .to-top-label{display:none}
 }
