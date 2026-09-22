@@ -6,11 +6,12 @@ const SECTIONS = [
   {id:"appearance", n:"04", t:"Appearance",      k:"uniform marpat mccuu dress civilian attire formal business casual roughs grooming hoodie"},
   {id:"fitness",    n:"05", t:"Fitness & Medical", k:"pft cft ppft pcft tricare mctims separation bcp map medical readiness"},
   {id:"discipline", n:"06", t:"Discipline & Academics", k:"accountability leave liberty dismissal release remediation 0830 0845 0930 absenteeism"},
-  {id:"tracks",     n:"07", t:"Training tracks", k:"sde software development engineer product manager designer curriculum grading exams accelerator"},
-  {id:"onsite",     n:"08", t:"Onsite & logistics", k:"innovation tower parking garage gym badge swag offsite austin red river"},
-  {id:"tad",        n:"09", t:"Temporary duty",  k:"tad dts conops travel sharepoint tracker director approval"},
-  {id:"resources",  n:"10", t:"Resources",       k:"books reading cs50 odin boot.dev bah housing childcare schools links tricare capmetro"},
-  {id:"directory",  n:"11", t:"Directory",       k:"contacts phone email ortiz oblak averette slone references mco far"}
+  {id:"tracks",     n:"07", t:"Training track",  k:"sde software development engineer java react curriculum grading exams accelerator"},
+  {id:"advanced",   n:"08", t:"Advanced training", k:"product manager designer pm ux ui visual design research figma tailwind accessibility 508 wcag ethics jobs to be done story mapping roadmap"},
+  {id:"onsite",     n:"09", t:"Onsite & logistics", k:"innovation tower parking garage gym badge swag offsite austin red river"},
+  {id:"tad",        n:"10", t:"Temporary duty",  k:"tad dts conops travel sharepoint tracker director approval"},
+  {id:"resources",  n:"11", t:"Resources",       k:"books reading cs50 odin boot.dev bah housing childcare schools links tricare capmetro"},
+  {id:"directory",  n:"12", t:"Directory",       k:"contacts phone email ortiz oblak averette slone references mco far"}
 ];
 
 const CONTRACTOR = {
@@ -50,46 +51,6 @@ const DRESS = {
     lede:"The least formal type, for missions requiring hardier clothing to withstand a physically rugged environment and activity.",
     m:["Cargo pants or tasteful jeans","Collared shirt — polo or equivalent","Fleece or non-military all-weather jacket optional","Hiking boots or equivalent","Belt and socks complementary to the attire","Hats may be worn case-by-case"],
     f:["Same as males, except the shirt may be substituted for a tasteful blouse","No spaghetti straps, tank tops, or untasteful exposure of skin"]
-  }
-};
-
-const TRACKS = {
-  sde:{
-    lede:"Prepares you for a Software Development Engineer seat on a balanced product team — designing a product from an engineering perspective and programming the solution.",
-    stack:["CLI","Pair programming","Java fundamentals","Object-oriented programming","Test-driven development","Databases","JavaScript fundamentals","Asynchronous code","HTML & CSS","React","Agile","Docker","Deployment","Evolutionary architecture","Containerizing applications","Manual & automatic scaling","Liveness probes","CI/CD"],
-    sec:["Injection","Broken authentication","Sensitive data exposure","Security misconfiguration","Cross-site scripting (XSS)","Insecure deserialization","Components with known vulnerabilities"],
-    mods:[
-      ["Database design & management","The relational model and SQL; OLTP systems compared to distributed DBMS and data warehousing; web databases; Oracle DBMS in lectures and labs."],
-      ["Object-oriented programming with Java","Writing, testing and debugging intermediate OO programs; data models and schemas; prototypes; subsystems and interfaces; unit testing and integration; defining system and software requirements."],
-      ["Advanced web authoring","Perl scripts, CGI, database interaction and ASP; progressively complex sites in HTML, CSS, JavaScript, PHP and MySQL; ASP.NET caching, web services and configuration."],
-      ["HTML, CSS & JavaScript","HTML, XHTML, DHTML, CSS and JavaScript; data types; hyperlinks, images, lists, tables and forms; debugging; control structures; arrays and the DOM."],
-      ["Project management","Best practices, objectives, processes, tools and techniques; managing integration, scope, time, cost and quality; risk and procurement; analyzing real project cases."]
-    ],
-    grade:[["Exams (3, including a final)","200"],["Quizzes / practice assignments","100"],["Lab assignments","100"],["Development project — Loan Calculator","100"]],
-    total:"500",
-    scale:[["A","90–100%"],["B","80–89%"],["C","70–79%"],["D","60–69%"],["F","59% and below"]],
-    note:"Development Fridays: you build a Loan Calculator across the term. Textbook is <em>Starting Out with Python</em> (Gaddis, 5th ed.), available through Blackboard."
-  },
-  pm:{
-    lede:"Covers product management and design end-to-end: PM basics, design basics, visual and UI design principles, collaborative leadership, and tooling.",
-    stack:["UX design","Design ideation","Product design","Design research","Information architecture","Visual design","UI design 1 & 2","Interaction design","Responsive design","Figma","Design systems","Tailwind CSS","Story mapping","Jobs to be Done","Product roadmaps","Backlog management"],
-    sec:["Design ethics","Accessibility — 508 / WCAG","Balanced team collaboration"],
-    mods:[
-      ["UX design","Storytelling, ideation, user research and interaction design; information architecture, product strategy and best practice; creating user-centered experiences and presenting design decisions."],
-      ["Design research","Generative and evaluative research methods; user interviews, usability testing and analysis; presenting data and recommendations."],
-      ["Visual & UI design","Visual language for digital environments; universal principles, typography and color theory; style guides and pattern libraries; navigation, forms, data display and feedback patterns; micro-interactions, UX writing and conversational interfaces."],
-      ["Interaction design","The role of psychology in design — cognition, perception and memory; designing and testing interactions that motivate user behavior."],
-      ["Collaborative leadership","Comparing the Military Decision Making Process (MDMP) with the Double Diamond UX framework; sketchnoting and visual facilitation; ethical standards in UX and PM."]
-    ],
-    rubric:[
-      ["0","Not turned in","Late assignments are not graded. Contact your professor in advance if you may miss a deadline."],
-      ["1","Resubmit","Lacks foundational understanding, with multiple areas for improvement."],
-      ["2","Resubmit","Shows foundational understanding with some areas for improvement."],
-      ["3","Passed","Shows foundational understanding and fulfills requirements. Use the feedback to level up."],
-      ["4","Good","Shows solid understanding and implementation of the concept."],
-      ["5","Exceeds","Shows superior understanding and senior-level implementation."]
-    ],
-    note:"Submit assignments in Blackboard as links to Google Drive documents. Feedback lands within 48–72 hours — focus on the feedback, not the score. Resubmissions are due within 72 hours and you may resubmit <strong>no more than twice per assignment</strong>; excessive use may result in counseling, additional assignments, or required tutoring."
   }
 };
 
@@ -202,64 +163,6 @@ document.querySelectorAll('[data-d]').forEach(b => {
   });
 });
 paintDress('business');
-
-/* ============ TRACKS ============ */
-const trackPanel = document.getElementById('trackPanel');
-function chips(arr){
-  return '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">' +
-    arr.map(x => '<span class="ref">'+x+'</span>').join('') + '</div>';
-}
-function paintTrack(k){
-  const t = TRACKS[k];
-  let grading;
-  if (k === 'sde') {
-    grading =
-      '<h3 class="sub-h">Assessment &amp; grading</h3><div class="tbl-scroll"><table>' +
-      '<thead><tr><th>Component</th><th style="width:92px;text-align:right">Points</th></tr></thead><tbody>' +
-      t.grade.map(r => '<tr><td><b>'+r[0]+'</b></td><td class="num" style="text-align:right">'+r[1]+'</td></tr>').join('') +
-      '<tr><td><b>Total</b></td><td class="num" style="text-align:right"><b>'+t.total+'</b></td></tr>' +
-      '</tbody></table></div>' +
-      '<div class="tbl-scroll" style="margin-top:14px"><table><thead><tr><th>Grade</th><th>Percentage</th></tr></thead><tbody>' +
-      t.scale.map(r => '<tr><td><b>'+r[0]+'</b></td><td class="num">'+r[1]+'</td></tr>').join('') +
-      '</tbody></table></div>';
-  } else {
-    grading =
-      '<h3 class="sub-h">Assessment &amp; grading</h3><div class="tbl-scroll"><table>' +
-      '<thead><tr><th style="width:52px">Score</th><th style="width:118px">Verdict</th><th>Meaning</th></tr></thead><tbody>' +
-      t.rubric.map(r => '<tr><td class="num"><b>'+r[0]+'</b></td><td><b>'+r[1]+'</b></td><td>'+r[2]+'</td></tr>').join('') +
-      '</tbody></table></div>';
-  }
-
-  trackPanel.innerHTML =
-    '<p class="panel-lede">'+t.lede+'</p>' +
-    '<h4 class="min-h">What you will work in</h4>' + chips(t.stack) +
-    '<h4 class="min-h">' + (k === 'sde' ? 'Security topics covered' : 'Ethics &amp; accessibility') + '</h4>' + chips(t.sec) +
-    '<h3 class="sub-h">Modules</h3><div class="tbl-scroll"><table><tbody>' +
-      t.mods.map(m => '<tr><td style="width:210px"><b>'+m[0]+'</b></td><td>'+m[1]+'</td></tr>').join('') +
-    '</tbody></table></div>' +
-    grading +
-    '<div class="note" style="margin-top:16px">'+t.note+'</div>' +
-    '<h3 class="sub-h">Course policies</h3><ul class="list">' +
-      '<li><strong>Attendance.</strong> Regular attendance is crucial. Missing classes or labs may result in being dropped from the course.</li>' +
-      '<li><strong>Late assignments.</strong> A two-day grace period for lab assignments, with a 20&#37; penalty.</li>' +
-      '<li><strong>Withdrawal.</strong> It is your responsibility to withdraw if necessary, and there may be financial or academic impacts.</li>' +
-      '<li><strong>Incompletes.</strong> Granted only for serious extenuating circumstances, and completed by a deadline set with the instructor.</li>' +
-      '<li><strong>Scholastic integrity.</strong> Plagiarism or any form of cheating results in a grade of F.</li>' +
-      (k === 'pm'
-        ? '<li><strong>Presentations.</strong> Reschedulable for illness, planned travel, or medical appointments — notify your professor in advance. Make-ups may fall outside regular classroom hours.</li>' +
-          '<li><strong>Quizzes.</strong> Required and taken in person in the classroom. Off campus that day? Arrange an online time with your professor. Ill? Contact them as soon as possible.</li>'
-        : '') +
-    '</ul>' +
-    '<h4 class="min-h">Instructional method</h4>' +
-    '<div class="prose"><p>The course splits evenly between lectures and labs — half the class learning theory, half applying it. Coursework is supported via Blackboard, where you access slide decks, assignments, and grades.</p></div>';
-}
-document.querySelectorAll('[data-t]').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('[data-t]').forEach(x => x.setAttribute('aria-selected', String(x === b)));
-    paintTrack(b.dataset.t);
-  });
-});
-paintTrack('sde');
 
 /* ============ TAD STEPPER ============ */
 const stepsEl = document.getElementById('steps');

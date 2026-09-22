@@ -57,11 +57,12 @@ Files are numbered, and **the number sets the order on the page**.
 | `05-appearance.html` | Standards of Appearance |
 | `06-fitness.html` | Fitness & Medical Readiness |
 | `07-discipline.html` | Discipline & Academics |
-| `08-tracks.html` | Training tracks |
-| `09-onsite.html` | Onsite & logistics |
-| `10-tad.html` | Temporary duty (TAD) |
-| `11-resources.html` | Resources |
-| `12-directory.html` | Directory & references |
+| `08-tracks.html` | Training track |
+| `09-advanced.html` | Advanced additional training |
+| `10-onsite.html` | Onsite & logistics |
+| `11-tad.html` | Temporary duty (TAD) |
+| `12-resources.html` | Resources |
+| `13-directory.html` | Directory & references |
 
 ---
 
