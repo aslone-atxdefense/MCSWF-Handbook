@@ -178,14 +178,14 @@ h3.sub-h{
   font-size:20px;font-weight:500;text-transform:uppercase;letter-spacing:.055em;
   margin-top:40px;margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--rule);
 }
-h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing:.02em;margin-top:22px;margin-bottom:8px}
+h4.min-h{font-family:var(--f-body);font-size:17px;font-weight:600;letter-spacing:.02em;margin-top:30px;margin-bottom:9px}
 
 .prose{display:flex;flex-direction:column;gap:15px;color:var(--ink-2)}
 .prose strong{color:var(--ink);font-weight:600}
 .list{display:flex;flex-direction:column;gap:9px;padding-left:0;margin:0;list-style:none}
 .list li{position:relative;padding-left:20px;color:var(--ink-2)}
 .list li::before{
-  content:"";position:absolute;left:2px;top:.62em;width:6px;height:1.5px;background:var(--brass)
+  content:"";position:absolute;left:2px;top:.62em;width:6px;height:2px;background:var(--brass)
 }
 .list li strong{color:var(--ink);font-weight:600}
 .list .sub-list{margin-top:9px;padding-left:0}
@@ -251,11 +251,10 @@ h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing
 .steps{display:flex;flex-direction:column;border:1px solid var(--rule)}
 .step{border-bottom:1px solid var(--rule)}
 .step:last-child{border-bottom:0}
-.step-btn{
-  width:100%;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
-  background:none;border:0;padding:15px 18px;cursor:pointer;text-align:left;color:var(--ink);font:inherit
+.step-head{
+  display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+  padding:15px 18px;color:var(--ink)
 }
-.step-btn:hover{background:var(--surface-2)}
 .step-n{
   font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--field);
   border:1px solid var(--rule);border-radius:50%;width:30px;height:30px;
@@ -266,10 +265,7 @@ h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing
   display:block;font-family:var(--f-mono);font-size:10.5px;font-weight:400;
   letter-spacing:.09em;text-transform:uppercase;color:var(--scarlet);margin-top:3px
 }
-.step-x{font-family:var(--f-mono);font-size:16px;color:var(--ink-3);transition:transform .2s ease}
-.step[open] .step-x, .step.open .step-x{transform:rotate(45deg)}
-.step-d{padding:0 18px 18px 76px;color:var(--ink-2);font-size:14.5px}
-.step-d[hidden]{display:none}
+.step-d{padding:0 18px 18px 76px;color:var(--ink-2);font-size:15.5px}
 
 /* ============ TABLES ============ */
 .tbl-scroll{overflow-x:auto;border:1px solid var(--rule)}
@@ -289,13 +285,18 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .vals h4{font-family:var(--f-display);font-size:17px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--field);margin:0 0 9px}
 .vals p{font-size:14px;color:var(--ink-2)}
 
-.links{display:grid;gap:0;border-top:1px solid var(--rule)}
+.links{display:grid;gap:0;border-top:1px solid var(--rule);margin-bottom:4px}
 .links a{
-  display:flex;gap:14px;align-items:baseline;justify-content:space-between;
-  padding:12px 4px;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--ink)
+  position:relative;display:flex;gap:14px;align-items:baseline;justify-content:space-between;
+  padding:12px 4px 12px 22px;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--field)
 }
-.links a:hover{background:var(--surface-2);padding-inline:10px}
-.links a b{font-weight:500;font-size:14.5px}
+/* same brass dash as .list li, so resource lists read as lists */
+.links a::before{
+  content:"";position:absolute;left:2px;top:1.25em;width:6px;height:2px;background:var(--brass)
+}
+.links a:hover{background:var(--surface-2);padding-left:28px;padding-right:10px}
+.links a:hover b{color:var(--ink)}
+.links a b{font-weight:400;font-size:16px;color:var(--field)}
 .links a span{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:right;word-break:break-all}
 
 /* ============ CONTACTS ============ */
@@ -385,7 +386,7 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
   .drawer .rail-nav{padding:0;gap:0}
   .split{grid-template-columns:1fr}
   .split > div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
-  .step-btn{grid-template-columns:34px 1fr auto;gap:11px;padding:13px 14px}
+  .step-head{grid-template-columns:34px 1fr;gap:11px;padding:13px 14px}
   .step-d{padding:0 14px 16px 59px}
   .links a span{display:none}
 }

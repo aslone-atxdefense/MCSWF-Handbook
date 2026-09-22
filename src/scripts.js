@@ -54,14 +54,6 @@ const DRESS = {
   }
 };
 
-const STEPS = [
-  ["Complete a Mock DTS","Source data — do not submit","Before drafting a CONOPS, you complete a Mock DTS to capture the 5 Ws and a realistic cost estimate. This is the source data for the CONOPS template. <strong>Do not submit into DTS before Director approval.</strong>"],
-  ["Build and submit the TAD CONOPS","NLT 30 calendar days before travel","Using the Mock DTS data, complete the MCSWF TAD CONOPS Template and its companion slide deck, and submit to the Director no later than 30 calendar days before the travel start date."],
-  ["Director review &amp; approval","Normally within 5 business days","The Director reviews the CONOPS and either approves or disapproves it. A disapproved CONOPS comes back to you with the reason documented, so it can be revised and resubmitted."],
-  ["Log to the SharePoint TAD Tracker","Within 2 business days of approval","Once approved, log the trip in the MCSWF TAD Tracker, attaching or referencing the signed CONOPS."],
-  ["Submit in DTS","After steps 1–4 are complete","With the CONOPS approved and the Tracker updated, complete the official travel authorization in DTS."]
-];
-
 /* ============ NAV ============ */
 function buildNav(el){
   el.innerHTML = SECTIONS.map(s =>
@@ -163,27 +155,6 @@ document.querySelectorAll('[data-d]').forEach(b => {
   });
 });
 paintDress('business');
-
-/* ============ TAD STEPPER ============ */
-const stepsEl = document.getElementById('steps');
-stepsEl.innerHTML = STEPS.map((s, i) =>
-  '<div class="step' + (i === 0 ? ' open' : '') + '">' +
-    '<button class="step-btn" aria-expanded="'+(i===0)+'" aria-controls="sd'+i+'">' +
-      '<span class="step-n">'+(i+1)+'</span>' +
-      '<span class="step-t">'+s[0]+'<span>'+s[1]+'</span></span>' +
-      '<span class="step-x">+</span>' +
-    '</button>' +
-    '<div class="step-d" id="sd'+i+'"'+(i===0?'':' hidden')+'>'+s[2]+'</div>' +
-  '</div>'
-).join('');
-stepsEl.addEventListener('click', e => {
-  const btn = e.target.closest('.step-btn');
-  if (!btn) return;
-  const step = btn.closest('.step'), body = step.querySelector('.step-d');
-  const open = step.classList.toggle('open');
-  body.hidden = !open;
-  btn.setAttribute('aria-expanded', String(open));
-});
 
 /* ============ RETURN TO TOP ============ */
 (function toTop(){

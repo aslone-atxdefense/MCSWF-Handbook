@@ -194,14 +194,14 @@ h3.sub-h{
   font-size:20px;font-weight:500;text-transform:uppercase;letter-spacing:.055em;
   margin-top:40px;margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--rule);
 }
-h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing:.02em;margin-top:22px;margin-bottom:8px}
+h4.min-h{font-family:var(--f-body);font-size:17px;font-weight:600;letter-spacing:.02em;margin-top:30px;margin-bottom:9px}
 
 .prose{display:flex;flex-direction:column;gap:15px;color:var(--ink-2)}
 .prose strong{color:var(--ink);font-weight:600}
 .list{display:flex;flex-direction:column;gap:9px;padding-left:0;margin:0;list-style:none}
 .list li{position:relative;padding-left:20px;color:var(--ink-2)}
 .list li::before{
-  content:"";position:absolute;left:2px;top:.62em;width:6px;height:1.5px;background:var(--brass)
+  content:"";position:absolute;left:2px;top:.62em;width:6px;height:2px;background:var(--brass)
 }
 .list li strong{color:var(--ink);font-weight:600}
 .list .sub-list{margin-top:9px;padding-left:0}
@@ -267,11 +267,10 @@ h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing
 .steps{display:flex;flex-direction:column;border:1px solid var(--rule)}
 .step{border-bottom:1px solid var(--rule)}
 .step:last-child{border-bottom:0}
-.step-btn{
-  width:100%;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
-  background:none;border:0;padding:15px 18px;cursor:pointer;text-align:left;color:var(--ink);font:inherit
+.step-head{
+  display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+  padding:15px 18px;color:var(--ink)
 }
-.step-btn:hover{background:var(--surface-2)}
 .step-n{
   font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--field);
   border:1px solid var(--rule);border-radius:50%;width:30px;height:30px;
@@ -282,10 +281,7 @@ h4.min-h{font-family:var(--f-body);font-size:14px;font-weight:600;letter-spacing
   display:block;font-family:var(--f-mono);font-size:10.5px;font-weight:400;
   letter-spacing:.09em;text-transform:uppercase;color:var(--scarlet);margin-top:3px
 }
-.step-x{font-family:var(--f-mono);font-size:16px;color:var(--ink-3);transition:transform .2s ease}
-.step[open] .step-x, .step.open .step-x{transform:rotate(45deg)}
-.step-d{padding:0 18px 18px 76px;color:var(--ink-2);font-size:14.5px}
-.step-d[hidden]{display:none}
+.step-d{padding:0 18px 18px 76px;color:var(--ink-2);font-size:15.5px}
 
 /* ============ TABLES ============ */
 .tbl-scroll{overflow-x:auto;border:1px solid var(--rule)}
@@ -305,13 +301,18 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .vals h4{font-family:var(--f-display);font-size:17px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--field);margin:0 0 9px}
 .vals p{font-size:14px;color:var(--ink-2)}
 
-.links{display:grid;gap:0;border-top:1px solid var(--rule)}
+.links{display:grid;gap:0;border-top:1px solid var(--rule);margin-bottom:4px}
 .links a{
-  display:flex;gap:14px;align-items:baseline;justify-content:space-between;
-  padding:12px 4px;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--ink)
+  position:relative;display:flex;gap:14px;align-items:baseline;justify-content:space-between;
+  padding:12px 4px 12px 22px;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--field)
 }
-.links a:hover{background:var(--surface-2);padding-inline:10px}
-.links a b{font-weight:500;font-size:14.5px}
+/* same brass dash as .list li, so resource lists read as lists */
+.links a::before{
+  content:"";position:absolute;left:2px;top:1.25em;width:6px;height:2px;background:var(--brass)
+}
+.links a:hover{background:var(--surface-2);padding-left:28px;padding-right:10px}
+.links a:hover b{color:var(--ink)}
+.links a b{font-weight:400;font-size:16px;color:var(--field)}
 .links a span{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:right;word-break:break-all}
 
 /* ============ CONTACTS ============ */
@@ -401,7 +402,7 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
   .drawer .rail-nav{padding:0;gap:0}
   .split{grid-template-columns:1fr}
   .split > div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
-  .step-btn{grid-template-columns:34px 1fr auto;gap:11px;padding:13px 14px}
+  .step-head{grid-template-columns:34px 1fr;gap:11px;padding:13px 14px}
   .step-d{padding:0 14px 16px 59px}
   .links a span{display:none}
 }
@@ -685,7 +686,7 @@ html{scroll-behavior:smooth}
           <p class="sub">How performance is tracked, what accountability looks like day to day, and the three ways a Marine leaves the program.</p>
         </div>
 
-        <h4 class="min-h">The four measures</h4>
+        <h3 class="sub-h">The four measures</h3>
         <div class="tbl-scroll">
           <table>
             <thead><tr><th style="width:130px">Measure</th><th>Application</th></tr></thead>
@@ -870,7 +871,7 @@ html{scroll-behavior:smooth}
           <span class="ref">Figma</span><span class="ref">Design systems</span><span class="ref">Tailwind CSS</span><span class="ref">Story mapping</span><span class="ref">Jobs to be Done</span><span class="ref">Product roadmaps</span><span class="ref">Backlog management</span><span class="ref">User interviews</span><span class="ref">Usability testing</span><span class="ref">Sketchnoting</span>
         </div>
 
-        <h4 class="min-h">Practice areas</h4>
+        <h3 class="sub-h">Practice areas</h3>
         <div class="chips">
           <span class="ref">UX design</span><span class="ref">Design ideation</span><span class="ref">Product design</span><span class="ref">Design research</span><span class="ref">Information architecture</span><span class="ref">Visual design</span><span class="ref">UI design 1 &amp; 2</span><span class="ref">Interaction design</span><span class="ref">Responsive design</span>
         </div>
@@ -893,30 +894,40 @@ html{scroll-behavior:smooth}
         <div class="sec-head">
           <div class="num">ARTICLE 09</div>
           <h2>Onsite &amp; logistics</h2>
-          <p class="sub">The building, the badge, the gym, and the rhythm of the month.</p>
-        </div>
-        <div class="prose">
-          <p><strong><a href="https://maps.app.goo.gl/Ytb2K68BN8QXrbYw9" target="_blank" rel="noopener">Innovation Tower</a></strong> — 1300 Red River St, Floor 5, Ste. 540, Austin, TX 78701. The tenant and visitor parking garage entrance is on Red River.</p>
-          <p><strong>Your badge is issued on your first day.</strong> It grants access to the parking garage, the gym on the B1 level of the garage, and the office space on the 5th floor, Suite 540.</p>
+          <p class="sub">Building, badge access, gym access, and org wide battle rhythms</p>
         </div>
 
-        <h4 class="min-h">Onsite gym</h4>
+        <h3 class="sub-h">Office location</h3>
+        <ul class="list">
+          <li><strong><a href="https://maps.app.goo.gl/Ytb2K68BN8QXrbYw9" target="_blank" rel="noopener">Innovation Tower</a></strong> — 1300 Red River St, Floor 5, Ste. 540, Austin, TX 78701</li>
+          <li>The tenant and visitor parking garage entrance is on Red River.</li>
+        </ul>
+
+        <h3 class="sub-h">Badge access</h3>
+        <ul class="list">
+          <li><strong>Your badge is issued on your first day.</strong></li>
+          <li>It grants access to the parking garage, the gym on the B1 level of the garage, and the office space on the 5th floor, Suite 540.</li>
+        </ul>
+
+        <h3 class="sub-h">Onsite gym</h3>
         <ul class="list">
           <li>Parking garage, B1 level (1st level) — <strong>badge access only</strong></li>
           <li>Lockers, showers, and towels available</li>
           <li>Weight room, treadmills, stairmaster, Pelotons, rowers, boxing bag, ellipticals</li>
         </ul>
 
-        <h4 class="min-h">The rhythm</h4>
+        <h3 class="sub-h">Org Wide Battle Rhythms</h3>
         <ul class="list">
+          <li><strong>Daily Standup</strong> — 0845, Mon-Fri, brief standup to discuss the day's work and any blockers. Attendance is required.</li>
+          <li><strong>Bi-weekly Director Update Briefings</strong> — every two weeks in place of Standup, org meets to update Director on team progress, Director briefs organizational updates and strategies.</li>
           <li><strong>Monthly org offsite</strong> — the last Thursday of every month, the whole organization goes offsite for team building.</li>
           <li><strong>Quarterly family events</strong> — every quarter we plan events open to family.</li>
         </ul>
 
-        <h4 class="min-h">Swag</h4>
-        <div class="prose">
-          <p>Order at <a href="http://marinecorpssoftwarefactory.merchologysolutions.com" target="_blank" rel="noopener">MarineCorpsSoftwareFactory.merchologysolutions.com</a>.</p>
-        </div>
+        <h3 class="sub-h">SWAG</h3>
+        <ul class="list">
+          <li>Order at <a href="http://marinecorpssoftwarefactory.merchologysolutions.com" target="_blank" rel="noopener">MarineCorpsSoftwareFactory.merchologysolutions.com</a>.</li>
+        </ul>
         <div class="note" style="margin-top:12px">Let Amber Slone know once you have submitted an order so she can track it.</div>
       </section>
 
@@ -927,7 +938,43 @@ html{scroll-behavior:smooth}
           <h2>Temporary duty (TAD)</h2>
           <p class="sub">Five steps, in order, with hard deadlines. Full detail lives in the <a href="https://docs.google.com/document/d/1gfAlquX6_mppfQciOSS6dj1AzqQjAKuw/edit?usp=sharing&amp;ouid=111499753562171945828&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">TAD CONOPS SOP</a>.</p>
         </div>
-        <div class="steps" id="steps"></div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-head">
+              <span class="step-n">1</span>
+              <span class="step-t">Create a Mock DTS Voucher</span>
+            </div>
+            <div class="step-d">Before drafting a CONOPS, the requesting Marine creates a <a href="https://www.defensetravel.osd.mil/" target="_blank" rel="noopener">Mock DTS Voucher</a> to capture a realistic cost estimate. This is the source data for the CONOPS template. <strong>DO NOT submit into DTS before Director approval.</strong></div>
+          </div>
+          <div class="step">
+            <div class="step-head">
+              <span class="step-n">2</span>
+              <span class="step-t">Build and Submit the TAD CONOPS</span>
+            </div>
+            <div class="step-d">Using the Mock DTS data and inputting the 5 Ws, the requesting Marine completes the <a href="https://docs.google.com/presentation/d/136nJO_3sc4iwKrC8aEpt7SB5CGoim9GE/edit?usp=sharing&amp;ouid=111499753562171945828&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">MCSWF TAD CONOPS Template</a> and submits it to the Director NLT 30 calendar days before the travel start date.</div>
+          </div>
+          <div class="step">
+            <div class="step-head">
+              <span class="step-n">3</span>
+              <span class="step-t">Director Review &amp; Approval</span>
+            </div>
+            <div class="step-d">The Director reviews the CONOPS and either approves or disapproves it, normally within 5 business days of receipt. A disapproved CONOPS is returned to the requester with the reason documented so it can be revised and resubmitted.</div>
+          </div>
+          <div class="step">
+            <div class="step-head">
+              <span class="step-n">4</span>
+              <span class="step-t">Log to the SharePoint TAD Tracker</span>
+            </div>
+            <div class="step-d">Once approved, the requesting Marine logs the trip in the <a href="https://usmc.sharepoint-mil.us.mcas-gov.us/sites/DCI/Lists/TAD%20Request/My%20Request.aspx" target="_blank" rel="noopener">Sharepoint TAD Tracker</a> within 2 business days, attaching or referencing the signed CONOPS.</div>
+          </div>
+          <div class="step">
+            <div class="step-head">
+              <span class="step-n">5</span>
+              <span class="step-t">Submit in DTS</span>
+            </div>
+            <div class="step-d">With the CONOPS approved and the Tracker updated, the requesting Marine completes the official travel authorization in <a href="https://www.defensetravel.osd.mil/" target="_blank" rel="noopener">DTS</a>.</div>
+          </div>
+        </div>
         <div class="admin" style="margin-top:20px">
           <div class="tag">Order matters</div>
           <p><strong>Do not submit into DTS before Director approval.</strong> The Mock DTS exists to produce the cost estimate for the CONOPS — it is not the authorization.</p>
@@ -942,7 +989,8 @@ html{scroll-behavior:smooth}
           <p class="sub">What to read, and what to work through before you arrive.</p>
         </div>
 
-        <h4 class="min-h">Start here before you arrive</h4>
+        <h3 class="sub-h">Before you arrive</h3>
+        <h4 class="min-h">Start here</h4>
         <div class="links">
           <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener"><b>CS50x</b><span>Harvard intro to computer science</span></a>
           <a href="https://missing.csail.mit.edu/" target="_blank" rel="noopener"><b>MIT Missing Semester</b><span>Command line, Git, debugging, dev tools</span></a>
@@ -1041,7 +1089,7 @@ html{scroll-behavior:smooth}
             <a href="tel:+17602130916">(760) 213-0916</a>
           </div>
           <div class="card">
-            <div class="rank">Civilian</div><b>Amber Slone</b><div class="role">Program Manager</div>
+            <div class="rank">Civilian</div><b>Ms. Amber Slone</b><div class="role">Program Manager</div>
             <a href="mailto:aslone@atxdefense.com">aslone@atxdefense.com</a>
             <a href="tel:+19727438773">(972) 743-8773</a>
           </div>
@@ -1136,14 +1184,6 @@ const DRESS = {
     f:["Same as males, except the shirt may be substituted for a tasteful blouse","No spaghetti straps, tank tops, or untasteful exposure of skin"]
   }
 };
-
-const STEPS = [
-  ["Complete a Mock DTS","Source data — do not submit","Before drafting a CONOPS, you complete a Mock DTS to capture the 5 Ws and a realistic cost estimate. This is the source data for the CONOPS template. <strong>Do not submit into DTS before Director approval.</strong>"],
-  ["Build and submit the TAD CONOPS","NLT 30 calendar days before travel","Using the Mock DTS data, complete the MCSWF TAD CONOPS Template and its companion slide deck, and submit to the Director no later than 30 calendar days before the travel start date."],
-  ["Director review &amp; approval","Normally within 5 business days","The Director reviews the CONOPS and either approves or disapproves it. A disapproved CONOPS comes back to you with the reason documented, so it can be revised and resubmitted."],
-  ["Log to the SharePoint TAD Tracker","Within 2 business days of approval","Once approved, log the trip in the MCSWF TAD Tracker, attaching or referencing the signed CONOPS."],
-  ["Submit in DTS","After steps 1–4 are complete","With the CONOPS approved and the Tracker updated, complete the official travel authorization in DTS."]
-];
 
 /* ============ NAV ============ */
 function buildNav(el){
@@ -1246,27 +1286,6 @@ document.querySelectorAll('[data-d]').forEach(b => {
   });
 });
 paintDress('business');
-
-/* ============ TAD STEPPER ============ */
-const stepsEl = document.getElementById('steps');
-stepsEl.innerHTML = STEPS.map((s, i) =>
-  '<div class="step' + (i === 0 ? ' open' : '') + '">' +
-    '<button class="step-btn" aria-expanded="'+(i===0)+'" aria-controls="sd'+i+'">' +
-      '<span class="step-n">'+(i+1)+'</span>' +
-      '<span class="step-t">'+s[0]+'<span>'+s[1]+'</span></span>' +
-      '<span class="step-x">+</span>' +
-    '</button>' +
-    '<div class="step-d" id="sd'+i+'"'+(i===0?'':' hidden')+'>'+s[2]+'</div>' +
-  '</div>'
-).join('');
-stepsEl.addEventListener('click', e => {
-  const btn = e.target.closest('.step-btn');
-  if (!btn) return;
-  const step = btn.closest('.step'), body = step.querySelector('.step-d');
-  const open = step.classList.toggle('open');
-  body.hidden = !open;
-  btn.setAttribute('aria-expanded', String(open));
-});
 
 /* ============ RETURN TO TOP ============ */
 (function toTop(){
