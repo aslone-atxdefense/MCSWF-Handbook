@@ -172,7 +172,7 @@ section{padding-block:clamp(52px,6vw,76px) 0;scroll-margin-top:24px}
 .sec-head{border-top:2px solid var(--ink);padding-top:14px;margin-bottom:30px}
 .sec-head .num{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--scarlet)}
 .sec-head h2{font-size:clamp(27px,3.7vw,40px);font-weight:500;text-transform:uppercase;letter-spacing:.005em;margin-top:5px}
-.sec-head .sub{margin-top:11px;color:var(--ink-2);max-width:62ch}
+.sec-head .sub{margin-top:11px;color:var(--ink-2)}
 
 h3.sub-h{
   font-size:20px;font-weight:500;text-transform:uppercase;letter-spacing:.055em;
@@ -182,6 +182,8 @@ h4.min-h{font-family:var(--f-body);font-size:17px;font-weight:600;letter-spacing
 
 .prose{display:flex;flex-direction:column;gap:15px;color:var(--ink-2)}
 .prose strong{color:var(--ink);font-weight:600}
+/* prose following another block keeps one consistent gap everywhere */
+.list + .prose, .admin + .prose, .tbl-scroll + .prose, .note + .prose{margin-top:16px}
 .list{display:flex;flex-direction:column;gap:9px;padding-left:0;margin:0;list-style:none}
 .list li{position:relative;padding-left:20px;color:var(--ink-2)}
 .list li::before{

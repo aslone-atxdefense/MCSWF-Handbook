@@ -188,7 +188,7 @@ section{padding-block:clamp(52px,6vw,76px) 0;scroll-margin-top:24px}
 .sec-head{border-top:2px solid var(--ink);padding-top:14px;margin-bottom:30px}
 .sec-head .num{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--scarlet)}
 .sec-head h2{font-size:clamp(27px,3.7vw,40px);font-weight:500;text-transform:uppercase;letter-spacing:.005em;margin-top:5px}
-.sec-head .sub{margin-top:11px;color:var(--ink-2);max-width:62ch}
+.sec-head .sub{margin-top:11px;color:var(--ink-2)}
 
 h3.sub-h{
   font-size:20px;font-weight:500;text-transform:uppercase;letter-spacing:.055em;
@@ -198,6 +198,8 @@ h4.min-h{font-family:var(--f-body);font-size:17px;font-weight:600;letter-spacing
 
 .prose{display:flex;flex-direction:column;gap:15px;color:var(--ink-2)}
 .prose strong{color:var(--ink);font-weight:600}
+/* prose following another block keeps one consistent gap everywhere */
+.list + .prose, .admin + .prose, .tbl-scroll + .prose, .note + .prose{margin-top:16px}
 .list{display:flex;flex-direction:column;gap:9px;padding-left:0;margin:0;list-style:none}
 .list li{position:relative;padding-left:20px;color:var(--ink-2)}
 .list li::before{
@@ -714,7 +716,7 @@ html{scroll-behavior:smooth}
           <div class="tag">If you are unaccounted for</div>
           <p>Any Marine not accounted for is reported immediately to the SEA, who will attempt contact and continue until each Marine is positively accounted for. <strong>Team Leads document the infraction and forward it for your personnel file.</strong></p>
         </div>
-        <div class="prose" style="margin-top:16px">
+        <div class="prose">
           <p><strong>Place of duty</strong> is Innovation Tower in downtown Austin unless otherwise specified. Virtual or remote operations may be authorized case-by-case with leadership approval and <strong>should not be assumed as an entitlement</strong>.</p>
         </div>
 
@@ -734,7 +736,7 @@ html{scroll-behavior:smooth}
           <li><strong>Standard leave.</strong> Taken during block leave periods such as winter holidays and 4th of July, and all federal holidays, with MCSWF staff approval.</li>
           <li><strong>Case-by-case leave.</strong> Requests during the Technical Accelerator or 1:1 SME pairing are processed individually.</li>
         </ul>
-        <div class="prose" style="margin-top:14px">
+        <div class="prose">
           <p>All leave, liberty, and administrative absences are processed in accordance with <span class="ref">MCO 6110.3A</span>.</p>
         </div>
       </section>
@@ -746,7 +748,9 @@ html{scroll-behavior:smooth}
           <h2>Training track</h2>
           <p class="sub">Every Marine trains on the Software Engineer track in the University of Texas Technical Accelerator.</p>
         </div>
-        <p class="panel-lede">Prepares you for a Software Engineer seat on a balanced product team — designing a product from an engineering perspective and programming the solution.</p>
+        <div class="prose">
+          <p>Prepares you for a Software Engineer seat on a balanced product team — designing a product from an engineering perspective and programming the solution.</p>
+        </div>
 
         <h4 class="min-h">What you will work in</h4>
         <div class="chips">
@@ -819,7 +823,9 @@ html{scroll-behavior:smooth}
           <h2>Advanced additional training</h2>
           <p class="sub">Product management and design are no longer a separate track. They are advanced training offered on top of the Software Engineer curriculum.</p>
         </div>
-        <p class="panel-lede">Every Marine here trains as a Software Engineer. Product management and design are the skills that make an engineer useful on a balanced team — knowing who the user is, what problem is worth solving, and how to shape a solution someone can actually use. This training covers PM basics, design basics, visual and UI design principles, collaborative leadership, and the tooling that goes with them.</p>
+        <div class="prose">
+          <p>Every Marine here trains as a Software Engineer. Product management and design are the skills that make an engineer useful on a balanced team — knowing who the user is, what problem is worth solving, and how to shape a solution someone can actually use. This training covers PM basics, design basics, visual and UI design principles, collaborative leadership, and the tooling that goes with them.</p>
+        </div>
 
         <h3 class="sub-h">Product management basics</h3>
         <ul class="list">
