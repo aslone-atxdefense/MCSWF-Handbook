@@ -6,7 +6,7 @@ const SECTIONS = [
   {id:"appearance", n:"04", t:"Appearance",      k:"uniform marpat mccuu dress civilian attire formal business casual roughs grooming hoodie"},
   {id:"fitness",    n:"05", t:"Fitness & Medical", k:"pft cft ppft pcft tricare mctims separation bcp map medical readiness"},
   {id:"discipline", n:"06", t:"Discipline & Academics", k:"accountability leave liberty dismissal release remediation 0830 0845 0930 absenteeism"},
-  {id:"tracks",     n:"07", t:"Training track",  k:"sde software development engineer java react curriculum grading exams accelerator"},
+  {id:"tracks",     n:"07", t:"Training track",  k:"sde software engineer java react curriculum grading exams accelerator"},
   {id:"advanced",   n:"08", t:"Advanced training", k:"product manager designer pm ux ui visual design research figma tailwind accessibility 508 wcag ethics jobs to be done story mapping roadmap"},
   {id:"onsite",     n:"09", t:"Onsite & logistics", k:"innovation tower parking garage gym badge swag offsite austin red river"},
   {id:"tad",        n:"10", t:"Temporary duty",  k:"tad dts conops travel sharepoint tracker director approval"},
